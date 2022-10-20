@@ -17,6 +17,19 @@ class Stock extends React.Component{
 
     componentDidMount () {
         this.fetchstock();
+        this.stock_search();
+    }
+
+    stock_search() {
+        const Api_key = "AO8RJ8LVUMAV2H2U"
+
+        const keywords = "ba";
+
+        const App_url = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + keywords + "&apikey=" + Api_key
+
+        fetch(App_url)
+        .then(response => response.json())
+        .then(data => console.log(data))
     }
 
     fetchstock () {
