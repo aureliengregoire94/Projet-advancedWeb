@@ -1,7 +1,5 @@
 import React from "react";
-import Plot from 'react-plotly.js'
-
-
+import Plot from 'react-plotly.js';
 
 class Stock extends React.Component{
 
@@ -18,6 +16,7 @@ class Stock extends React.Component{
     componentDidMount () {
         this.fetchstock();
     }
+
 
     fetchstock () {
 
@@ -39,7 +38,7 @@ class Stock extends React.Component{
         .then(
             function(data){
                 console.log(data)
-                for(var key in data['Weekly Adjusted Time Series']){
+                for(let key in data['Weekly Adjusted Time Series']){
                     stockChartXvaluesfunction.push(key)
                     stockChartYvaluesfunction.push(data['Weekly Adjusted Time Series'][key]['1. open'])
                 }

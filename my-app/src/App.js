@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import React from 'react'
 import Stock from './Stock'
 import './App.css';
@@ -10,5 +9,3 @@ function App() {
     </div>
   )
 }
-
-export default App;
