@@ -60,17 +60,43 @@ class Stock extends React.Component{
             <div>
                 <h1>Stock Market</h1>
                 <Plot
-                data={[
-                    {
-                        x: this.state.stockChartXvalues, 
-                        y: this.state.stockChartYvalues, 
-                        type: 'scatter',
-                        mode: 'lines+markers',
-                        marker: {color : 'red'},
-                    }
-                    
-                ]}
-                layout={{width:720, height: 440, title: 'stock value'}}
+                    data={[
+                        {
+                            x: this.state.stockChartXvalues,
+                            y: this.state.stockChartYvalues,
+                            type: 'scatter',
+                            mode: 'lines+markers',
+                            marker: {color : 'red'},
+                        }
+
+                    ]}
+                    layout={{width:720, height: 440, title: 'stock value'}}
+                />
+                <Plot
+                    data={[
+                        {
+                            x: this.state.stockChartXvalues,
+                            y: this.state.stockChartYvalues,
+                            type: 'scatter',
+                            mode: 'lines+markers',
+                            marker: {color : 'red'},
+                        }
+
+                    ]}
+                    layout={{width:720, height: 440, title: 'stock value'}}
+                />
+                <Plot
+                    data={[
+                        {
+                            x: this.state.stockChartXvalues,
+                            y: this.state.stockChartYvalues,
+                            type: 'scatter',
+                            mode: 'lines+markers',
+                            marker: {color : 'red'},
+                        }
+
+                    ]}
+                    layout={{width:720, height: 440, title: 'stock value'}}
                 />
             </div>
         )
