@@ -1,25 +1,9 @@
 import React from "react";
-import Plot from 'react-plotly.js'
+import Plot from "react-plotly.js"
 
 
 
 class Stock extends React.Component{
-
-    constructor (props) {
-        super(props);
-        
-        this.state = {
-            stockChartXvalues: [], 
-            stockChartYvalues: []
-        }
-
-    }
-
-
-    componentDidMount () {
-        
-    }
-
     
 
     stock_search(e) {
@@ -53,7 +37,7 @@ class Stock extends React.Component{
             x.innerHTML = ""
             let text = ""
             for(var i = 0; i< names.length ; i++){
-                text = "Company name:" + names[i] + " /// Company Symbol" + symbols[i] 
+                text = "Company name:" + names[i] + " /// Company Symbol : " + symbols[i] 
                 let new_div = document.createElement('div')
                 new_div.innerText = text
                 x.appendChild(new_div)
@@ -71,15 +55,15 @@ class Stock extends React.Component{
 
     fetchstock (e) {
 
-        e.preventDefault()
+        e.preventDefault();
 
-        const pointerTothis = this
+        const pointertothis = this
 
         let stockChartXvaluesfunction = []
         let stockChartYvaluesfunction = []
 
         const Api_key = "AO8RJ8LVUMAV2H2U"
-        const Symbol = "BABA"
+        const Symbol = document.getElementById("symbol").value
         const App_url = "https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=" + Symbol + "&apikey=" + Api_key
 
         fetch(App_url)
@@ -94,12 +78,11 @@ class Stock extends React.Component{
                 for(var key in data['Weekly Adjusted Time Series']){
                     stockChartXvaluesfunction.push(key)
                     stockChartYvaluesfunction.push(data['Weekly Adjusted Time Series'][key]['1. open'])
-                }
-
-                pointerTothis.setState({
-                    stockChartXvalues: stockChartXvaluesfunction, 
-                    stockChartYvalues: stockChartYvaluesfunction
-                })
+                } 
+                
+                localStorage.setItem('x-axis', stockChartXvaluesfunction)
+                localStorage.setItem('y-axis', stockChartYvaluesfunction)
+                          
             }
             
         )
@@ -116,20 +99,28 @@ class Stock extends React.Component{
                     Click here to search
                 </button>
                 <div id= "main"></div>
+                <div>enter the company symbol to visualize its stock evolution</div>
+                <input type="text" id="symbol"></input>
+                <button onClick={this.fetchstock}>
+                    Press here to validate your choice
+                </button>
                 <h1>Stock Market</h1>
-                <Plot
-                data={[
+                <div id="plotspot">
+                    <Plot
+                    data={[
                     {
-                        x: this.state.stockChartXvalues, 
-                        y: this.state.stockChartYvalues, 
+                        x: localStorage.getItem('x-axis').split(','),
+                        y: localStorage.getItem('y-axis').split(','),
                         type: 'scatter',
                         mode: 'lines+markers',
-                        marker: {color : 'red'},
-                    }
-                    
-                ]}
-                layout={{width:720, height: 440, title: 'stock value'}}
-                />
+                        marker: {color: 'red'},
+                    },
+                    ]}
+                    layout={ {width: 1900, height: 900, title: 'Stock Plot'} }
+                    />
+                </div>
+                
+                
             </div>
         )
     }
