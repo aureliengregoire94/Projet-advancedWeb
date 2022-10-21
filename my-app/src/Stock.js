@@ -12,27 +12,66 @@ class Stock extends React.Component{
             stockChartXvalues: [], 
             stockChartYvalues: []
         }
+
     }
 
 
     componentDidMount () {
-        this.fetchstock();
-        this.stock_search();
+        
     }
 
-    stock_search() {
+    
+
+    stock_search(e) {
+
+        e.preventDefault()
+
+        let symbols = []
+        let names = []
+
         const Api_key = "AO8RJ8LVUMAV2H2U"
 
-        const keywords = "ba";
+        const keywords = document.getElementById("keyword");
 
-        const App_url = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + keywords + "&apikey=" + Api_key
+
+        if(keywords.value === null) {
+            return null
+        }
+
+        const App_url = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + keywords.value + "&apikey=" + Api_key
 
         fetch(App_url)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(function(data) {
+            for(var key in data['bestMatches']){
+                symbols.push(data['bestMatches'][key]['1. symbol'])
+                names.push(data['bestMatches'][key]['2. name'])
+                console.log(names)
+            }
+            let x = document.getElementById("main")
+            
+            x.innerHTML = ""
+            let text = ""
+            for(var i = 0; i< names.length ; i++){
+                text = "Company name:" + names[i] + " /// Company Symbol" + symbols[i] 
+                let new_div = document.createElement('div')
+                new_div.innerText = text
+                x.appendChild(new_div)
+            }
+            
+            
+            
+        })
+
+        
+        
     }
 
-    fetchstock () {
+    
+
+    fetchstock (e) {
+
+        e.preventDefault()
 
         const pointerTothis = this
 
@@ -40,7 +79,7 @@ class Stock extends React.Component{
         let stockChartYvaluesfunction = []
 
         const Api_key = "AO8RJ8LVUMAV2H2U"
-        const Symbol = "AMZN"
+        const Symbol = "BABA"
         const App_url = "https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=" + Symbol + "&apikey=" + Api_key
 
         fetch(App_url)
@@ -64,14 +103,19 @@ class Stock extends React.Component{
             }
             
         )
-
-        console.log(stockChartYvaluesfunction)
     }
 
 
     render() {
         return(
+
             <div>
+                <div>type here to search for the symbol of a given company</div>
+                <input type="text" id="keyword"></input>
+                <button onClick = {this.stock_search}>
+                    Click here to search
+                </button>
+                <div id= "main"></div>
                 <h1>Stock Market</h1>
                 <Plot
                 data={[
