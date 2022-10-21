@@ -28,6 +28,12 @@ function App() {
           </div>
         </form>
       </div>
+      <footer>
+        <div>
+          <p>Advance Web Project</p>
+          <p>Baligand Antoine - Wielgos Wiktor - Peltier Thibault - Grégoire Aurélien</p>
+        </div>
+      </footer>
     </div>
   )
 }
