@@ -74,7 +74,6 @@ class Stock extends React.Component{
         )
         .then(
             function(data){
-                console.log(data)
                 for(var key in data['Weekly Adjusted Time Series']){
                     stockChartXvaluesfunction.push(key)
                     stockChartYvaluesfunction.push(data['Weekly Adjusted Time Series'][key]['1. open'])
@@ -106,7 +105,7 @@ class Stock extends React.Component{
                 </button>
                 <h1>Stock Market</h1>
                 <div id="plotspot">
-                    <Plot
+                <Plot
                     data={[
                     {
                         x: localStorage.getItem('x-axis').split(','),
