@@ -58,28 +58,27 @@ class Stock extends React.Component{
     render() {
         return(
             <div>
-                <h1>Stock Market</h1>
-                <div>
-                    <form id="searchbox" method="get">
-                        <a>Search stock here</a>
-                        <br/><br/>
-                        <input name="q" type= "text" size="15" placeholder="Type here ..." />
-                        <input id="button-submit" type="submit" value="Search" />
-                    </form>
-                </div>
-                <Plot
-                    data={[
-                        {
-                            x: this.state.stockChartXvalues,
-                            y: this.state.stockChartYvalues,
-                            type: 'scatter',
-                            mode: 'lines+markers',
-                            marker: {color : 'red'},
-                        }
+                <form id="searchbox" method="get">
+                    <a>Search stock here</a>
+                    <br/><br/>
+                    <input name="q" type= "text" size="15" placeholder="Type here ..." />
+                    <input id="button-submit" type="submit" value="Search" />
+                </form>
+                <form>
+                    <Plot
+                        data={[
+                            {
+                                x: this.state.stockChartXvalues,
+                                y: this.state.stockChartYvalues,
+                                type: 'scatter',
+                                mode: 'lines+markers',
+                                marker: {color : 'red'},
+                            }
 
-                    ]}
-                    layout={{width:720, height: 440, title: 'stock value'}}
-                />
+                        ]}
+                        layout={{width:720, height: 440, title: 'stock value'}}
+                    />
+                </form>
             </div>
         )
     }
