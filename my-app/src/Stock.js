@@ -59,7 +59,7 @@ class Stock extends React.Component{
         return(
             <div>
                 <form id="searchbox" method="get">
-                    <a>Search stock here</a>
+                <p>Stocks</p>
                     <br/><br/>
                     <input name="q" type= "text" size="15" placeholder="Type here ..." />
                     <input id="button-submit" type="submit" value="Search" />

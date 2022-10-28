@@ -1,9 +1,10 @@
 import React from "react";
+import Currency from "../Currency";
 
-function Currency() {
+function Currencies() {
     return (
-        <h1>Currency Page</h1>
-    );
+        <Currency/>
+    )
 }
 
-export default Currency;
+export default Currencies;
