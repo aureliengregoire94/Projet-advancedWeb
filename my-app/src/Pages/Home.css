@@ -1,5 +1,5 @@
 html {
-    height:auto;
+    
     background: linear-gradient(to bottom right, #3A9DC2, lightgray) no-repeat;
 }
 
@@ -23,17 +23,27 @@ header {
     z-index: 1;
 }
 
+footer{
+    margin-top: 260px;
+    background-color: #2F2F2E;
+    text-align: center;
+    color: white;
+    padding: 2px;
+    border-radius: 15px;
+}
+
 form {
     margin: auto;
     width: 85%;
     padding: 1em;
     border-radius: 1em;
-    background: #2F2F2E;
-    margin-top: 1cm;
+    background: gray;
+    margin-top: 100px;
     box-sizing: border-box;
     color: aliceblue;
     text-align: center;
 }
+
 
 .buttons {
     display: flex;
@@ -88,4 +98,9 @@ button:hover span:after {
 }
 #div{
     maring : 10px;
+}
+
+.currencies{
+    display: flex;
+    flex-wrap: wrap;
 }
